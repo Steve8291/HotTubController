@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>HOT TUB CONTROL</title>
+  <script src="script.js" defer></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <!-- <link rel="apple-touch-icon" href="images/custom_icon.png"> -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h1>TUB CONTROL</h1>
+  <p><span id="refresh-time">4:30:10   Mar 3 2025</span></p>
+  <div class="content">
+    <div class="card-grid">
+      <div class="card">
+        <p class="card-title">Status</p>
+        <p class="reading">Temp: <span id="temp"></span> &deg;F</p>
+        <p class="reading">Set: <span id="set-temp"></span> &deg;F</p>
+        <p class="reading">Pump: <span id="pump"></span></p>
+        <p class="reading">Heat: <span id="heat"></span></p>
+      </div>
+      <div class="card">
+        <p class="card-title">Adjust Temp</p>
+        <p class="reading2"><span id="set-temp2"></span> &deg;F</p>
+        <div class="wrapper">
+          <span class="minus">-</span>
+          <div class="num">
+            <input type="text" id="adjust-temp" maxlength="3" inputmode="numeric" required>
+          </div>
+          <span class="plus">+</span>
+        </div>
+        <button class="button-78" id="submit-button" role="button">Submit</button>
+      <div>
+    </div>
+  </div>
+</body>
+</html>

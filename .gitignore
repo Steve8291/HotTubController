@@ -1,0 +1,11 @@
+.pio
+.vscode
+*.code-workspace
+.DS_Store
+include
+lib
+test
+test_code
+hardware
+src/settings.h
+Steam_Background
