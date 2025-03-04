@@ -2,14 +2,13 @@ const url = `ws://${window.location.hostname}/ws`;
 const minus = document.querySelector(".minus");
 const num = document.querySelector(".num");
 const plus = document.querySelector(".plus");
-const adjustTemp = document.getElementById('adjust-temp');
-const submitButton = document.getElementById('submit-button');
+const adjustTemp = document.getElementById("adjust-temp");
+const submitButton = document.getElementById("submit-button");
 let ws;
 let maxTemp;
 let minTemp;
 
-
-window.addEventListener('load', (event) => {
+window.addEventListener("load", (event) => {
   console.log("Page Loaded");
   initWebSocket();
 });
@@ -49,10 +48,10 @@ function onMessage(event) {
   switch (msg.type) {
     case "data":
       formatTemp(msg.temp);
-      document.getElementById('set-temp').innerHTML = msg.setTemp;
-      document.getElementById('set-temp2').innerHTML = msg.setTemp;
-      document.getElementById('pump').innerHTML = msg.pump;
-      document.getElementById('heat').innerHTML = msg.heat;
+      document.getElementById("set-temp").innerHTML = msg.setTemp;
+      document.getElementById("set-temp2").innerHTML = msg.setTemp;
+      document.getElementById("pump").innerHTML = msg.pump;
+      document.getElementById("heat").innerHTML = msg.heat;
       document.getElementById("refresh-time").innerHTML = getDateTime();
       break;
     case "defaults":
@@ -68,28 +67,28 @@ function onMessage(event) {
 // Add trailing zero to temp display when missing
 const formatTemp = (temp_value) => {
   if (temp_value % 1 === 0) {
-    document.getElementById('temp').innerHTML = `${temp_value}.0`;
+    document.getElementById("temp").innerHTML = `${temp_value}.0`;
   } else {
-    document.getElementById('temp').innerHTML = temp_value;
+    document.getElementById("temp").innerHTML = temp_value;
   }
-}
+};
 
 const requestDefaults = () => {
-  const msg = JSON.stringify({refresh: 1});
+  const msg = JSON.stringify({ refresh: 1 });
   console.log("Sending:", msg);
   ws.send(msg);
-}
+};
 
-submitButton.addEventListener('click', () => {
+submitButton.addEventListener("click", () => {
   const newTemp = parseInt(adjustTemp.value);
-  const currTemp = document.getElementById('set-temp').innerHTML
+  const currTemp = document.getElementById("set-temp").innerHTML;
   if (newTemp >= minTemp && newTemp <= maxTemp && newTemp != currTemp) {
-    const msg = JSON.stringify({set_temp: newTemp});
-    console.log("Sending:", msg)
+    const msg = JSON.stringify({ set_temp: newTemp });
+    console.log("Sending:", msg);
     ws.send(msg);
     requestDefaults(); // Sets all client entry fields to new value.
   } else {
-    adjustTemp.value = document.getElementById('set-temp').innerHTML;
+    adjustTemp.value = document.getElementById("set-temp").innerHTML;
     console.log("Adjust Temp value out of range:", newTemp);
   }
 });
@@ -99,7 +98,7 @@ const getDateTime = () => {
   const nowTime = date.toLocaleString("en-US", { timeStyle: "medium" });
   const nowDate = date.toLocaleString("en-US", { dateStyle: "medium" });
   return `${nowTime} &nbsp &nbsp ${nowDate}`;
-}
+};
 
 plus.addEventListener("click", () => {
   const curTemp = parseInt(adjustTemp.value);
@@ -118,11 +117,11 @@ minus.addEventListener("click", () => {
 });
 
 // Validate New Temperature
-adjustTemp.addEventListener('blur', () => {
+adjustTemp.addEventListener("blur", () => {
   const newTemp = parseInt(adjustTemp.value);
   if (newTemp < minTemp || newTemp > maxTemp) {
-    adjustTemp.value = document.getElementById('set-temp').innerHTML;
+    adjustTemp.value = document.getElementById("set-temp").innerHTML;
   } else {
     console.log("Adjust Temp value out of range:", newTemp);
   }
-})
+});

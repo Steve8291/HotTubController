@@ -1,6 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap");
 html {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
   display: inline-block;
   text-align: center;
 }
@@ -14,7 +15,7 @@ body {
   margin: 0;
   background-image: url(images/background.jpg);
   background-repeat: no-repeat;
-  background-attachment: fixed; 
+  background-attachment: fixed;
   background-size: 100% 100%;
   color: #cdc7c6;
 }
@@ -32,7 +33,7 @@ body {
 }
 
 .card {
-  box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);
+  box-shadow: 2px 2px 12px 1px rgba(140, 140, 140, 0.5);
 }
 
 .card-title {
@@ -49,7 +50,7 @@ body {
 .reading2 {
   font-size: 1.4rem;
   font-size: 20px;
-  font-weight:600;
+  font-weight: 600;
   color: #cdc7c6;
 }
 
@@ -68,7 +69,7 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
-  
+
 .wrapper span {
   font-size: 26px;
   width: 100%;
@@ -87,19 +88,18 @@ body {
   border-left: 2px solid rgba(0, 0, 0, 0.5);
 }
 
-input[type=text] {
+input[type="text"] {
   width: 3ch;
   padding: 12px 8px;
   margin: 8px 8px;
   box-sizing: content-box;
   font-size: 20px;
-  font-weight:600;
+  font-weight: 600;
   text-align: center;
   border: none;
   color: black;
   background: rgba(0, 0, 0, 0);
 }
-
 
 /* Button CSS */
 .button-78 {
@@ -180,7 +180,11 @@ input[type=text] {
 
 @media (hover: hover) {
   .button-78:hover:not(:disabled)::before {
-    background: linear-gradient(92.83deg, rgb(255, 116, 38) 0%, rgb(249, 58, 19) 100%);
+    background: linear-gradient(
+      92.83deg,
+      rgb(255, 116, 38) 0%,
+      rgb(249, 58, 19) 100%
+    );
   }
 
   .button-78:hover:not(:disabled)::after {
@@ -198,7 +202,12 @@ input[type=text] {
 }
 
 .button-78:active:not(:disabled)::before {
-  background-image: linear-gradient(0deg, rgba(0, 0, 0, .2), rgba(0, 0, 0, .2)), linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
+  background-image: linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2)
+    ),
+    linear-gradient(92.83deg, #ff7426 0, #f93a13 100%);
 }
 
 .button-78:active:not(:disabled)::after {
@@ -211,5 +220,5 @@ input[type=text] {
 
 .button-78:disabled {
   cursor: default;
-  opacity: .24;
+  opacity: 0.24;
 }
