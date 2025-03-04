@@ -23,14 +23,12 @@ function initWebSocket() {
   ws.onerror = onError;
 }
 
-
 // Connection Opened
 function onOpen(event) {
   console.log("WebSocket: CONNECTED ->", url);
   // Redundant: server already sends defaults onopen
   requestDefaults();
 }
-
 
 // Connection Closed
 function onClose(event) {
@@ -39,18 +37,15 @@ function onClose(event) {
   setTimeout(initWebSocket, 2000);
 }
 
-
 // Error
 function onError(event) {
   console.log("WebSocket error: ", event);
 }
 
-
 // Message
 function onMessage(event) {
   console.log("Receive: ", event.data);
   const msg = JSON.parse(event.data);
-
   switch (msg.type) {
     case "data":
       document.getElementById('temp').innerHTML = msg.temp;
@@ -70,13 +65,11 @@ function onMessage(event) {
   }
 }
 
-
 const requestDefaults = () => {
   const msg = JSON.stringify({refresh: 1});
   console.log("Sending:", msg);
   ws.send(msg);
 }
-
 
 submitButton.addEventListener('click', () => {
   const newTemp = parseInt(adjustTemp.value);
@@ -92,18 +85,12 @@ submitButton.addEventListener('click', () => {
   }
 });
 
-
 const getDateTime = () => {
   const date = new Date();
   const nowTime = date.toLocaleString("en-US", { timeStyle: "medium" });
   const nowDate = date.toLocaleString("en-US", { dateStyle: "medium" });
   return `${nowTime} &nbsp &nbsp ${nowDate}`;
 }
-
-
-// // probably just combine with actual function.
-// submitButton.addEventListener('click', sendSetTemp);
-
 
 plus.addEventListener("click", () => {
   const curTemp = parseInt(adjustTemp.value);
@@ -121,7 +108,6 @@ minus.addEventListener("click", () => {
   }
 });
 
-
 // Validate New Temperature
 adjustTemp.addEventListener('blur', () => {
   const newTemp = parseInt(adjustTemp.value);
@@ -131,10 +117,3 @@ adjustTemp.addEventListener('blur', () => {
     console.log("Adjust Temp value out of range:", newTemp);
   }
 })
-
-
-// num.addEventListener("click", () => {
-//   const elem = document.getElementById("num");
-//   console.log("You clicked number");
-//   this.type = 'number';
-// });
