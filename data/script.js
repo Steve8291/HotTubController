@@ -48,7 +48,7 @@ function onMessage(event) {
   const msg = JSON.parse(event.data);
   switch (msg.type) {
     case "data":
-      document.getElementById('temp').innerHTML = msg.temp;
+      formatTemp(msg.temp);
       document.getElementById('set-temp').innerHTML = msg.setTemp;
       document.getElementById('set-temp2').innerHTML = msg.setTemp;
       document.getElementById('pump').innerHTML = msg.pump;
@@ -62,6 +62,15 @@ function onMessage(event) {
       maxTemp = msg.max;
       minTemp = msg.min;
       break;
+  }
+}
+
+// Add trailing zero to temp display when missing
+const formatTemp = (temp_value) => {
+  if (temp_value % 1 === 0) {
+    document.getElementById('temp').innerHTML = `${temp_value}.0`;
+  } else {
+    document.getElementById('temp').innerHTML = temp_value;
   }
 }
 
