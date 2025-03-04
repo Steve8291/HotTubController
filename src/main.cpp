@@ -24,7 +24,6 @@ MillisChronoTimer dataIntervalTimer(DATA_INTERVAL);  // Interval for collecting 
 MillisChronoTimer tempIntervalTimer(TEMP_INTERVAL);  // Interval for calculating temperature
 MillisChronoTimer hotTimer(DRIFT_TIME * 60000);
 MillisChronoTimer coldTimer(DRIFT_TIME * 60000);
-MillisChronoTimer driftTimer(DRIFT_TIME * 60000);
 MillisChronoTimer pumpTimer(CIRCULATION_TIME * 3600000);
 MillisChronoTimer elementCooldownTimer(10 * 60000);  // 10 min heat element cooldown
 LiquidCrystal_I2C lcd(0x27, 16, 2);
@@ -68,6 +67,8 @@ void handleRotaryEncoder() {
         updateLCD();
         if (rotary_engaged) {
             userSettings.putShort("temp", temp_setting);  // minimize writes
+            coldTimer.forceExpire();
+            hotTimer.forceExpire();
             push_exit = true;
             rotary_engaged = false;
         } else {
@@ -87,6 +88,8 @@ void handleRotaryEncoder() {
             lcd.noDisplay();
             lcd.noBacklight();
             userSettings.putShort("temp", temp_setting);  // minimize writes
+            coldTimer.forceExpire();
+            hotTimer.forceExpire();
             rotary_engaged = false;
         }
     }
@@ -212,6 +215,8 @@ void handleWebSocketMessage(uint8_t *data) {
     if (set_new) {
         temp_setting = set_new;
         userSettings.putShort("temp", temp_setting);
+        coldTimer.forceExpire();  // Turn on heat immediately
+        hotTimer.forceExpire();  // Turn off heat immediately
         sendData();
     }
     
