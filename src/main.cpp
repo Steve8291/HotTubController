@@ -217,6 +217,7 @@ void handleWebSocketMessage(uint8_t *data) {
         userSettings.putShort("temp", temp_setting);
         coldTimer.forceExpire();  // Turn on heat immediately
         hotTimer.forceExpire();  // Turn off heat immediately
+        runThermostat();
         sendData();
     }
     
