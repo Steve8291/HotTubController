@@ -16,7 +16,6 @@ float current_temp;
 bool heatState = LOW;
 bool pumpState = HIGH;
 
-
 Preferences userSettings;
 AiEsp32RotaryEncoder rotaryEncoder = AiEsp32RotaryEncoder(ENCODER_B_PIN, ENCODER_A_PIN, ENCODER_BUTTON_PIN, ENCODER_VCC_PIN, ENCODER_STEPS);
 MillisChronoTimer lcdTimer(LCD_TIMEOUT);
@@ -34,7 +33,6 @@ AsyncWebSocket ws("/ws");
 JsonDocument tubStateDoc;  // Json object to hold tub_state variables.
 JsonDocument receivedJson; // holds received data from clients
 JsonDocument tubDefaults;  // holds defaluts for max and min
-
 
 void IRAM_ATTR readEncoderISR() {
     rotaryEncoder.readEncoder_ISR();
@@ -110,7 +108,6 @@ void readThermistor() {
         dataBuffer.add(analogRead(THERMISTOR_INPUT_PIN));
     }
 }
-
 
 // Calculate temp using a 3rd order polynomial.
 // Higher values use a different set of coefficients.
@@ -203,8 +200,6 @@ void sendDefaults() {
     tubDefaults["setTemp"] = temp_setting;
     send(tubDefaults);
 }
-
-
 
 void handleWebSocketMessage(uint8_t *data) {
     deserializeJson(receivedJson, (char*)data);
@@ -330,6 +325,4 @@ void loop() {
             ws.cleanupClients(); // Cleanup disconnected clients or too many clients
         }
     }
-
 }
-
