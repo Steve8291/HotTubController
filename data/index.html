@@ -20,37 +20,41 @@
   </head>
   <body>
     <h1>TUB CONTROL</h1>
-    <p><span id="refresh-time"></span></p>
-    <div class="content">
+    <p id="refresh-time"></p>
       <div class="card-grid">
         <div class="card">
-          <p class="card-title">Status</p>
-          <p class="reading">Temp: <span id="temp"></span> &deg;F</p>
-          <p class="reading">Set: <span id="set-temp"></span> &deg;F</p>
-          <p class="reading">Pump: <span id="pump"></span></p>
-          <p class="reading">Heat: <span id="heat"></span></p>
+          <h2>Status</h2>
+          <h3>Temp: <span id="temp"></span> &deg;F</h3>
+          <h3>Set: <span id="set-temp"></span> &deg;F<h3>
+          <h3>Light: <span id="light"></span></h3>
+          <h3>Heat: <span id="heat"></span><h3>
         </div>
-        <div class="card">
-          <p class="card-title">Adjust Temp</p>
-          <p class="reading2"><span id="set-temp2"></span> &deg;F</p>
-          <div class="wrapper">
-            <span class="minus">-</span>
+
+
+        <div class="card adjust">
+          <h2>Adjust</h2>
+
+          <h3><span id="set-temp2"></span> &deg;F</h3>
+          <div class="temp-input">
+            <span class="minus" id="minus">-</span>
             <div class="num">
-              <input
-                type="text"
-                id="adjust-temp"
-                maxlength="3"
-                inputmode="numeric"
-                required
-              />
+              <input type="text" id="adjust-temp" maxlength="3" inputmode="numeric" required>
             </div>
-            <span class="plus">+</span>
+            <span class="plus" id="plus">+</span>
           </div>
-          <button class="button-78" id="submit-button" role="button">
-            Submit
-          </button>
+
+          <div>
+         <button id="submit-button" role="button">
+            Set Temp
+         </button>
+          </div>
+          
+          <div class="adjust-light">
+            <select name="adjust-light" id="adjust-light"></select>
+          </div>
+
+        
         </div>
       </div>
-    </div>
   </body>
 </html>
